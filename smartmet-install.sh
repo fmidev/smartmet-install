@@ -1,38 +1,6 @@
 #!/bin/sh
-cat > /etc/yum.repos.d/smartmet.repo <<EOF
-[smartmet-international]
-name=FMI SmartMet
-baseurl=http://sudan:SmartMetFMI@download.weatherproof.fi/smartmet-international/rhel/7/\$basearch/
-enabled=1
-gpgcheck=0
-metadata_expire=5
-http_caching=none
-
-[smartmet-international-noarch]
-name=FMI SmartMet
-baseurl=http://sudan:SmartMetFMI@download.weatherproof.fi/smartmet-international/rhel/7/noarch/
-enabled=1
-gpgcheck=0
-metadata_expire=5
-http_caching=none
-
-[smartmet-base]
-name=FMI SmartMet
-baseurl=http://sudan:SmartMetFMI@download.weatherproof.fi/smartmet-base/rhel/7/\$basearch/
-enabled=1
-gpgcheck=0
-metadata_expire=5
-http_caching=none
-
-[smartmet-base-noarch]
-name=FMI SmartMet
-baseurl=http://sudan:SmartMetFMI@download.weatherproof.fi/smartmet-base/rhel/7/noarch/
-enabled=1
-gpgcheck=0
-metadata_expire=5
-http_caching=none
-EOF
-
+echo "Install SmartMet Open repository" && \
+rpm -Uvh https://download.fmi.fi/smartmet-open/rhel/7/noarch/smartmet-open-release-7-2.el7.fmi.noarch.rpm && \
 echo "Install FMIForge repository" && \
 rpm -Uvh http://download.weatherproof.fi/fmiforge/rhel/7/noarch/fmiforge-release-7-1.fmi.noarch.rpm && \
 echo "Install EPEL repository" && \

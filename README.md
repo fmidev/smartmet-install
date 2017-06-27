@@ -27,3 +27,7 @@ valid users = smartmet
 ```
 smbpasswd -a smartmet
 ```
+* Allow samba to write non standard locations if SELinux is enabled
+```
+setsebool -P samba_export_all_rw 1
+```

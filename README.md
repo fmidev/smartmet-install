@@ -23,3 +23,7 @@ printable = no
 valid users = smartmet
 ```
 * systemctl restart smb
+* Add password for samba user smartmet
+```
+smbpasswd -a smartmet
+```

@@ -22,3 +22,4 @@ writable = yes
 printable = no
 valid users = smartmet
 ```
+* systemctl restart smb

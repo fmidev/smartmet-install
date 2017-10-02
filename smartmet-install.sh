@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "Install SmartMet Open repository" && \
-rpm -Uvh https://download.fmi.fi/smartmet-open/rhel/7/x86_64/smartmet-open-17.9.1-1.el7.fmi.noarch.rpm && \
+rpm -Uvh https://download.fmi.fi/smartmet-open/rhel/7/x86_64/smartmet-open-release-17.9.1-1.el7.fmi.noarch.rpm && \
 echo "Install EPEL repository" && \
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
 echo "Install PostgreSQL repository" && \

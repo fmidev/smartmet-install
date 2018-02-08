@@ -9,8 +9,6 @@ echo "Install yum-utils package" && \
 yum -y install yum-utils && \
 echo "Install Docker CE repository" && \
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
-echo "Install postgis" && \
-yum -y install postgis-2.0* && \
 echo "Install SmartMet packages" && \
 yum -y install smartmet-base-international && \
 echo "Update packages" && \

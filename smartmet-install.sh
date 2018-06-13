@@ -4,7 +4,7 @@ rpm -Uvh https://download.fmi.fi/smartmet-open/rhel/7/x86_64/smartmet-open-relea
 echo "Install EPEL repository" && \
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
 echo "Install PostgreSQL repository" && \
-rpm -Uvh https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm && \
+rpm -Uvh https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-3.noarch.rpm && \
 echo "Install yum-utils package" && \
 yum -y install yum-utils && \
 echo "Install Docker CE repository" && \

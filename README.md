@@ -1,6 +1,7 @@
 # Install SmartMet Server Environment
 
 * install RedHat or CentOS 7 minimal
+** create and mount biggest partition as /smartmet
 * login as root
 * run smartmet-install.sh as root user
 ```

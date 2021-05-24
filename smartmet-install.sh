@@ -5,8 +5,6 @@ echo "Install EPEL repository" && \
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
 echo "Install NodeJS repository" && \
 rpm -Uvh https://rpm.nodesource.com/pub_12.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm && \
-echo "Install PostgreSQL repository" && \
-rpm -Uvh https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-3.noarch.rpm && \
 echo "Install yum-utils package" && \
 yum -y install yum-utils && \
 echo "Install Docker CE repository" && \

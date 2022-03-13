@@ -1,15 +1,15 @@
 # Install SmartMet Server Environment
 
-* install AlmaLinux 8 minimal https://mirrors.almalinux.org/isos.html
+* install AlmaLinux 8 minimal https://mirrors.almalinux.org/isos.html or Rocky Linux 8 https://rockylinux.org/download
   * enable network
   * enable ntp
   * create and mount biggest partition as /smartmet
 * login as root
 * run smartmet-install.sh as root user
 ```
-curl -O https://raw.githubusercontent.com/fmidev/smartmet-install/master/smartmet-install.sh
-chmod a+x smartmet-install.sh
-./smartmet-install.sh
+curl -O https://raw.githubusercontent.com/fmidev/smartmet-install/master/smartmet-install-8.sh
+chmod a+x smartmet-install-8.sh
+./smartmet-install-8.sh
 ```
 * Change password for smartmet user created by install script
 ```

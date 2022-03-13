@@ -1,6 +1,8 @@
 # Install SmartMet Server Environment
 
-* install RedHat or CentOS 7 minimal
+* install AlmaLinux 8 minimal https://mirrors.almalinux.org/isos.html
+  * enable network
+  * enable ntp
   * create and mount biggest partition as /smartmet
 * login as root
 * run smartmet-install.sh as root user

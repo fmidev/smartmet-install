@@ -9,6 +9,8 @@ echo "Enable PowerTools" && \
 dnf config-manager --set-enabled powertools && \
 echo "Install EPEL repository" && \
 dnf -y install epel-release && \
+echo "Disable eccodes from EPEL" && \
+dnf config-manager --setopt="epel.exclude=eccodes*" --save && \
 echo "Disable postgresql:12 module" && \
 dnf -y module disable postgresql:12 && \
 echo "Install SmartMet packages" && \

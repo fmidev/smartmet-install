@@ -1,6 +1,6 @@
 # Install SmartMet Server Environment
 
-* install AlmaLinux 8 minimal https://mirrors.almalinux.org/isos.html or Rocky Linux 8 https://rockylinux.org/download
+* install AlmaLinux 8 *minimal* https://mirrors.almalinux.org/isos.html or Rocky Linux 8 minimal https://rockylinux.org/download
   * enable network
   * enable ntp
   * create and mount biggest partition as /smartmet

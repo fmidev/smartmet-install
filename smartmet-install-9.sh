@@ -6,7 +6,7 @@ dnf -y install yum-utils && \
 echo "Install Docker CE repository" && \
 dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
 echo "Enable PowerTools" && \
-dnf config-manager --set-enabled powertools && \
+dnf config-manager --set-enabled crb && \
 echo "Install EPEL repository" && \
 dnf -y install epel-release && \
 echo "Disable eccodes from EPEL" && \

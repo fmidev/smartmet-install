@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "Install SmartMet Open repository" && \
-dnf -y install https://download.fmi.fi/smartmet-open/rhel/8/x86_64/smartmet-open-release-latest-9.noarch.rpm && \
+dnf -y install https://download.fmi.fi/smartmet-open/rhel/9/x86_64/smartmet-open-release-latest-9.noarch.rpm && \
 echo "Install yum utils" && \
 dnf -y install yum-utils && \
 echo "Install Docker CE repository" && \

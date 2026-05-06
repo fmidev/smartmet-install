@@ -173,9 +173,22 @@ The web UI is at `http://<server>/`. The Samba share is reachable as
 - **Script aborts on the `/smartmet` mountpoint check** — answer `y` to
   continue without a dedicated volume (only safe for testing).
 
-## Phase 2: automated VM provisioning
+## Unattended install via Kickstart
 
-A tiered plan for automating VM creation in Proxmox (Kickstart, cloud-init
-templates, Packer golden image) is in [`PHASE2_PLAN.md`](PHASE2_PLAN.md).
-Open questions about network model, disk sizing, and credential injection
-need to be resolved before implementation begins.
+For unattended installs (Tier 1 of the automation roadmap):
+
+```
+inst.ks=https://your-host/path/smartmet-10.ks
+```
+
+The kickstart at [`kickstart/smartmet-10.ks`](kickstart/smartmet-10.ks)
+auto-detects single-disk vs two-disk hosts, sets up LVM with a growable
+`/smartmet`, and runs the install script in `%post`. Replace the SSH
+key placeholder before hosting it. See
+[`kickstart/README.md`](kickstart/README.md) for full details.
+
+## Phase 2: more VM provisioning automation
+
+A tiered plan covering cloud-init Proxmox templates and Packer golden
+images is in [`PHASE2_PLAN.md`](PHASE2_PLAN.md). Tier 1 (Kickstart) is
+implemented above.

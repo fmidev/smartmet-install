@@ -1,6 +1,7 @@
 # Phase 2 — automating SmartMet VM provisioning
 
-**Status:** plan, awaiting review. Nothing implemented yet.
+**Status:** Tier 1 (Kickstart) implemented in `kickstart/`. Tiers 2–4 still
+planned.
 
 ## Goal
 
@@ -44,7 +45,13 @@ of SmartMet VMs being deployed.
 
 These need answers from the user before tier 2+ can be built.
 
-## Tier 1 — Kickstart (~1 day, no infra changes)
+## Tier 1 — Kickstart (✅ implemented)
+
+See `kickstart/smartmet-10.ks` and `kickstart/README.md`. Auto-detects
+single-disk vs two-disk hosts and BIOS vs UEFI; uses LVM throughout so
+`/smartmet` can be grown with `lvextend + xfs_growfs`.
+
+### Original sketch
 
 Drop a single file `kickstart/smartmet-10.ks` into this repo. Anaconda reads
 it, does the entire OS install unattended, partitions disk with `/smartmet`

@@ -85,8 +85,8 @@ The script:
 - adds the SmartMet, EPEL, CRB/PowerTools, and Docker CE repositories
 - excludes eccodes from EPEL (FMI ships its own build)
 - disables the system-default `postgresql` module (FMI ships its own)
-- installs `smartmet-base-international` (PHP CLI, PostgreSQL, Samba,
-  Docker CE, and the SmartMet data-processing packages)
+- installs `smartmet-base-international` (PostgreSQL, Samba, Docker CE,
+  and the SmartMet data-processing packages)
 - runs `dnf update`
 - prints a checklist of remaining manual steps
 
@@ -135,25 +135,19 @@ dnf install smartmet-data-gem       # Environment Canada GEM
 dnf install smartmet-data-metar     # METAR station data
 ```
 
-Edit area & schedule for each model:
+Edit the area & schedule for each model:
 
 - `/smartmet/cnf/data/gfs.cnf`
 - `/smartmet/cnf/data/gem.cnf`
 
-Cron jobs in `/etc/cron.d/` will start fetching data on the next tick.
+All SmartMet data-processing work runs as the `smartmet` user under the
+cron schedule installed by `smartmet-base-international` (entries in
+`/smartmet/cnf/cron/cron.{10min,hourly,daily,weekly,monthly}` and
+triggers under `/smartmet/cnf/triggers.d/`). A single `/etc/cron.d/smartmet.cron`
+dispatches into those directories — don't drop ad-hoc cron files there
+yourself; add scripts to the matching `/smartmet/cnf/cron/...` directory.
 
-## 6. Set the PHP timezone
-
-The PHP CLI is used by smartmet's batch scripts. Set its timezone:
-
-```sh
-$EDITOR /etc/php.d/smartmet.ini      # set e.g. date.timezone = Europe/Helsinki
-```
-
-(No service restart is needed — there's no system Apache; the web server runs
-in a Docker container that loads its own PHP config.)
-
-## 7. Verify the install
+## 6. Verify the install
 
 ```sh
 systemctl status smb postgresql docker     # all should be active (running)

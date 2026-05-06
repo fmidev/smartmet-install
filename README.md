@@ -1,19 +1,24 @@
-# Install a SmartMet Server
+# Install a SmartMet Data Processing Server
 
-Install scripts and instructions for setting up an FMI SmartMet Server on
-RHEL-family Linux. AlmaLinux 10 or Rocky Linux 10 is recommended for new
-deployments; 9 and 8 are also supported.
+Install scripts and instructions for setting up an FMI **SmartMet Data
+Processing Server** on RHEL-family Linux. AlmaLinux 10 or Rocky Linux 10
+is recommended for new deployments; 9 and 8 are also supported.
+
+> **Not to be confused with** the *SmartMet API Server* (a separate FMI
+> product). This repo provisions the data-processing host that ingests and
+> manipulates forecast model data; the API server, if you also run one, is
+> a different deployment.
 
 ## What you get
 
 After running the installer, the host runs:
 
-- The SmartMet server stack (`smartmet-base-international` meta-package)
+- The SmartMet data-processing stack (`smartmet-base-international` meta-package)
 - PostgreSQL (FMI build)
 - Samba share `smartmet` for editing data files from a workstation
 - A `smartmet` system user that owns runtime data under `/smartmet`
-- Docker CE engine (enabled in `%post`; the FMI smartmet-server itself runs
-  in containers)
+- Docker CE engine (enabled in `%post`; the FMI processing services
+  themselves run in containers)
 - `firewalld` and `fail2ban` for basic hardening
 
 ## Choose the right script
@@ -81,7 +86,7 @@ The script:
 - excludes eccodes from EPEL (FMI ships its own build)
 - disables the system-default `postgresql` module (FMI ships its own)
 - installs `smartmet-base-international` (PHP CLI, PostgreSQL, Samba,
-  Docker CE, and the SmartMet server packages)
+  Docker CE, and the SmartMet data-processing packages)
 - runs `dnf update`
 - prints a checklist of remaining manual steps
 

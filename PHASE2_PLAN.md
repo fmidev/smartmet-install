@@ -4,7 +4,7 @@
 
 ## Goal
 
-Reduce a SmartMet-server VM from "boot ISO, click through Anaconda, copy
+Reduce a SmartMet Data Processing Server VM from "boot ISO, click through Anaconda, copy
 script, hope nothing fails" to one of:
 
 - **good** — a single command that produces a fully-installed VM

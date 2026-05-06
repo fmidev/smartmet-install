@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install the SmartMet Open server stack on AlmaLinux 9 / Rocky 9 / RHEL 9.
+# Install the SmartMet Open server stack on AlmaLinux 10 / Rocky 10 / RHEL 10.
 #
 # Resumable: each step writes a marker in /var/lib/smartmet-install/. If the
 # script fails or is interrupted, just re-run it — completed steps are
@@ -25,15 +25,14 @@ esac
 # shellcheck disable=SC1091
 . /etc/os-release || die "Cannot read /etc/os-release."
 case "${ID}:${VERSION_ID%%.*}" in
-  almalinux:9|rocky:9|rhel:9|centos:9) ;;
-  *) die "This script targets RHEL 9 family (AlmaLinux/Rocky/RHEL/CentOS Stream 9). Detected: ${ID} ${VERSION_ID}." ;;
+  almalinux:10|rocky:10|rhel:10|centos:10) ;;
+  *) die "This script targets RHEL 10 family. Detected: ${ID} ${VERSION_ID}." ;;
 esac
 
 STATE_DIR=/var/lib/smartmet-install
 mkdir -p "$STATE_DIR"
 
 step() {
-  # step <id> <function-name>
   local id=$1 fn=$2
   local marker="$STATE_DIR/${id}.done"
   if [ -f "$marker" ] && [ "$FORCE" -eq 0 ]; then
@@ -55,7 +54,7 @@ check_smartmet_mount() {
 }
 
 add_smartmet_repo() {
-  dnf -y install https://download.fmi.fi/smartmet-open/rhel/9/x86_64/smartmet-open-release-latest-9.noarch.rpm
+  dnf -y install https://download.fmi.fi/smartmet-open/rhel/10/x86_64/smartmet-open-release-latest-10.noarch.rpm
 }
 
 install_dnf_utils() {
@@ -78,11 +77,15 @@ install_epel() {
 
 exclude_eccodes() {
   dnf config-manager --setopt="epel.exclude=eccodes*" --save
-  dnf config-manager --set-disabled epel-source
+  dnf config-manager --set-disabled epel-source 2>/dev/null || true
 }
 
-disable_pgsql_module() {
-  dnf -y module disable postgresql:15 || true
+disable_pgsql_modules() {
+  # RHEL 10 mostly ships plain packages, but disabling streams that may
+  # still be present is cheap insurance against version drift.
+  for stream in 16 17; do
+    dnf -y module disable "postgresql:${stream}" 2>/dev/null || true
+  done
 }
 
 install_smartmet_base() {
@@ -93,16 +96,16 @@ system_update() {
   dnf -y update
 }
 
-step preflight             check_smartmet_mount
-step add-smartmet-repo     add_smartmet_repo
-step install-dnf-utils     install_dnf_utils
-step add-docker-repo       add_docker_repo
-step enable-crb            enable_crb
-step install-epel          install_epel
-step exclude-eccodes       exclude_eccodes
-step disable-pgsql-module  disable_pgsql_module
-step install-smartmet-base install_smartmet_base
-step system-update         system_update
+step preflight              check_smartmet_mount
+step add-smartmet-repo      add_smartmet_repo
+step install-dnf-utils      install_dnf_utils
+step add-docker-repo        add_docker_repo
+step enable-crb             enable_crb
+step install-epel           install_epel
+step exclude-eccodes        exclude_eccodes
+step disable-pgsql-modules  disable_pgsql_modules
+step install-smartmet-base  install_smartmet_base
+step system-update          system_update
 
 cat <<EOF
 

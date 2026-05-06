@@ -1,4 +1,9 @@
 #!/bin/sh
+# DEPRECATED: RHEL 7 reached end-of-life on 2024-06-30 and no longer receives
+# security updates. This script is kept for reference only. New deployments
+# must use smartmet-install-9.sh or smartmet-install-10.sh.
+echo "WARNING: RHEL 7 is end-of-life. Press Ctrl-C within 10s to abort." >&2
+sleep 10
 echo "Install SmartMet Open repository" && \
 rpm -Uvh https://download.fmi.fi/smartmet-open/rhel/7/x86_64/smartmet-open-release-17.9.28-1.el7.fmi.noarch.rpm && \
 echo "Install EPEL repository" && \

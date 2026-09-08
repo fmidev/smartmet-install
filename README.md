@@ -80,7 +80,7 @@ chmod +x smartmet-install-10.sh
 
 The script:
 
-- detects your OS and refuses to run on the wrong family
+- detects your OS and refuses to run on the wrong version
 - warns if `/smartmet` isn't a separate mountpoint
 - adds the SmartMet, EPEL, CRB/PowerTools, and Docker CE repositories
 - excludes eccodes from EPEL (FMI ships its own build)
